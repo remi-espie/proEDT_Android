@@ -11,20 +11,19 @@ import android.annotation.TargetApi;
 
 public class MainActivity extends Activity {
 
-    private WebView mWebview ;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mWebview  = new WebView(this);
+        WebView mWebview = new WebView(this);
 
-        mWebview.getSettings().setJavaScriptEnabled(true); // enable javascript
+        // enable javascript on webview
+        mWebview.getSettings().setJavaScriptEnabled(true);
 
         final Activity activity = this;
 
+        // display webview error as toast
         mWebview.setWebViewClient(new WebViewClient() {
-            @SuppressWarnings("deprecation")
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 Toast.makeText(activity, description, Toast.LENGTH_SHORT).show();
@@ -37,6 +36,6 @@ public class MainActivity extends Activity {
         });
 
         mWebview.loadUrl("https://proedt.fr/");
-        setContentView(mWebview );
+        setContentView(mWebview);
     }
 }
